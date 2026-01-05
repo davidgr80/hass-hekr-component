@@ -1,16 +1,9 @@
 """Constants"""
 
 from datetime import timedelta
-
+from homeassistant.const import CONF_SENSORS, CONF_SWITCHES
 from homeassistant.components.sensor import DOMAIN as DOMAIN_SENSOR
 from homeassistant.components.switch import DOMAIN as DOMAIN_SWITCH
-from homeassistant.const import (
-    CONF_DEVICE_ID,
-    ATTR_ICON,
-    ATTR_NAME,
-    CONF_SENSORS,
-    CONF_SWITCHES,
-)
 
 DOMAIN = "hekr"
 
@@ -26,7 +19,6 @@ DEFAULT_USE_MODEL_FROM_PROTOCOL = True
 DEFAULT_SLEEP_INTERVAL = 4
 DEFAULT_TIMEOUT = 10.0
 
-CONF_DEVICE_ID = CONF_DEVICE_ID
 CONF_CONTROL_KEY = "control_key"
 CONF_APPLICATION_ID = "application_id"
 CONF_CLOUD_HOST = "cloud_host"
@@ -57,8 +49,6 @@ PROTOCOL_STATUS = "status"
 
 ATTR_STATE_ATTRIBUTE = "state_attribute"
 ATTR_MONITORED = "monitored_attributes"
-ATTR_NAME = ATTR_NAME
-ATTR_ICON = ATTR_ICON
 
 MONITORED_CONDITIONS_ALL = "all"
 
@@ -66,3 +56,8 @@ CONF_DOMAINS = {
     CONF_SENSORS: (DOMAIN_SENSOR, PROTOCOL_SENSORS),
     CONF_SWITCHES: (DOMAIN_SWITCH, PROTOCOL_SWITCHES),
 }
+
+PLATFORMS = [
+    DOMAIN_SENSOR,
+    DOMAIN_SWITCH,
+]

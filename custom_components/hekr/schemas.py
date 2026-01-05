@@ -35,13 +35,16 @@ from .const import (
     CONF_DEVICES,
     CONF_USE_MODEL_FROM_PROTOCOL,
     DEFAULT_USE_MODEL_FROM_PROTOCOL,
-    CONF_DOMAINS,
     CONF_ACCOUNTS,
     CONF_DUMP_DEVICE_CREDENTIALS,
     CONF_TOKEN_UPDATE_INTERVAL,
 )
 from .supported_protocols import SUPPORTED_PROTOCOLS
 
+VALIDATOR_DOMAINS = {
+    CONF_SENSORS: "sensors",
+    CONF_SWITCHES: "switches",
+}
 
 def test_for_list_correspondence(config_key: str, protocol_key: str):
     def validator(values):
@@ -80,7 +83,7 @@ CUSTOMIZE_SCHEMA = vol.Any(
 
 BASE_VALIDATOR_DOMAINS = [
     test_for_list_correspondence(config_key, protocol_key)
-    for config_key, (entity_domain, protocol_key) in CONF_DOMAINS.items()
+    for config_key, protocol_key in VALIDATOR_DOMAINS.items()
 ]
 
 BASE_PLATFORM_SCHEMA = {

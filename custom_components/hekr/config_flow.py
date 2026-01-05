@@ -20,6 +20,10 @@ from homeassistant.const import (
     CONF_USERNAME,
     CONF_PASSWORD,
 )
+from homeassistant.const import CONF_SENSORS, CONF_SWITCHES
+from homeassistant.components.sensor import DOMAIN as DOMAIN_SENSOR
+from homeassistant.components.switch import DOMAIN as DOMAIN_SWITCH
+
 import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers.typing import ConfigType
 
@@ -32,12 +36,14 @@ from .const import (
     CONF_ACCOUNT,
     DEFAULT_NAME_DEVICE,
     PROTOCOL_PORT,
-    CONF_DOMAINS,
     CONF_CONTROL_KEY,
     DEFAULT_SCAN_INTERVAL,
     PROTOCOL_DEFAULT,
     CONF_DUMP_DEVICE_CREDENTIALS,
     PROTOCOL_DEFINITION,
+    PROTOCOL_SENSORS,
+    PROTOCOL_SWITCHES,
+    CONF_DOMAINS,
 )
 from .supported_protocols import SUPPORTED_PROTOCOLS
 
@@ -249,7 +255,7 @@ class HekrFlowHandler(ConfigFlow, domain=DOMAIN):
         :return: Config flow command
         """
         if user_input is None:
-            return self.async_show_form(step_id="user", data_schema=self.schema_user)
+            return self.async_show_form(step_id="user", data_schema=USER_SCHEMA)
 
         if user_input[CONF_TYPE] == CONF_ACCOUNT:
             return await self.async_step_account()
